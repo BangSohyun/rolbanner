@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="https://www.gabia.com/assets/common/css/common.css">
+<!--<link rel="stylesheet" type="text/css" href="https://www.gabia.com/assets/css/index_style.css">-->
+<script type="text/javascript" src="https://www.gabia.com/assets/common/js/jquery-1.9.1.min.js"></script>
+
+<title>가비아, IT 세상을 가볍게 하는 힘 : 도메인, 호스팅, IDC, 기업솔루션, 웹사이트, 쇼핑몰</title>
+<style type="text/css">
+    .visualArea {height:485px;background:url(https://www.gabia.com/assets/common/images/bg_index01.jpg) 0 0 repeat-x}
+    .visualBg01 {height: 485px;}
+    
+    .indexImg {position:relative;width:1180px;margin:0 auto}
+    .visuals li {position:absolute;left:0;top:0;display:none}
+    .visuals li:first-child {display:block}
+    
+    .control_wrap {position:absolute;top:412px;left:100px}
+    .control_wrap button {display:block;background:url(images/sp_mainimg_controller.png) no-repeat}
+    .play_controll {float:left;width:26px}
+    .play_controll button{width:20px;height:20px;cursor:pointer;text-indent:-9999px;border:none;background-position:0px 0px}
+    .roll_control,.roll_control li {float:left;}
+    .roll_control li button {width:13px;height:21px;margin-right:3px;cursor:pointer;text-indent:-9999px;border:none;background-position:-67px 0px}
+    .roll_control li.active button {background-position:-46px 0px}
+</style>
+    
+<script type="text/javascript">
+    
+$(function(){
+    //변수 선언
+    var index= 0;
+    var rolling_second = 5000;
+    var numOfBanner = $('.visuals li').length;
+    var timer = setInterval(timerHandler,rolling_second);
+    var isAuto = true;
+//    var _btn = '';
+//    $('.visuals li').each(function(i){     
+//        _btn += "<li>"
+//		_btn += "<button type='button'"
+//		_btn += 'title=' + (i+1) + '번째&#32;배너'
+//		_btn += ">"
+//		_btn += "</li>"
+//		$('.roll_control ol').html(_btn);
+//     });
+    
+    $('.visuals li').each(function(i){
+		
+		$(this).append($('<strong>').text('Some html here'));
+	});
+    
+    
+    
+    var roll_btn = $('.roll_control li');
+    
+    //초기화
+    $('.roll_control li').eq(0).addClass('active');
+    
+    //이벤트
+    roll_btn.click(function() {
+        index = $(this).index();
+        $('.visuals li').each(function(i){            
+            if(index == i){
+                $(this).fadeIn();
+            }else{
+                $(this).fadeOut();
+            }
+        });
+        roll_btn.removeClass('active');
+        roll_btn.eq(index).addClass('active');
+    });
+    
+    function timerHandler(){
+        index++;
+        if (index == numOfBanner){
+            index = 0;
+        }
+        $('.visuals li').fadeOut();
+        $('.visuals li').eq(index).fadeIn();
+        roll_btn.removeClass('active');
+        roll_btn.eq(index).addClass('active');
+    }    
+    
+    roll_btn.mouseenter(function(){
+        clearInterval(timer);
+    });
+    roll_btn.mouseleave(function(){
+        timer = setInterval(timerHandler,rolling_second);
+    });
+    
+    $('.play_controll button').click(function(){
+        if(isAuto == true) {
+            clearInterval(timer);
+            $(this).css('background-position','-22px 0');
+            
+        }else{
+            timer = setInterval(timerHandler,rolling_second);
+            $(this).css('background-position','0 0');
+        }
+        isAuto = !isAuto;                          
+    }); 
+});
+    
+</script>    
+
+</head>
+
+<body>	
+<div class="visualArea" id="skipTargetContents">
+
+	<div class="visualBg01">
+		<div class="indexImg">
+			<div id="imgRoll">
+				<ol class="visuals">
+					<li>
+                        <img src="https://event.gabia.com/images/hosting/140401/bnr_www.jpg" alt="국내유일 품질보장제! 99.8% 가동률! 웹호스팅 최대 30% 할인" usemap="#event_140401">
+                        <map name="event_140401" id="event_140401">
+                            <area shape="rect" coords="98,285,258,325" alt="자세히보기" href="https://event.gabia.com/h_event_140401">
+                        </map>
+					</li>
+					<li>
+                        <img src="https://event.gabia.com/images/domain/140317/bnr_www.jpg" alt="훈훈한 봄처럼 훈훈한 가격 COM/NET/KR  13,000원!" usemap="#event_140317">
+                        <map name="event_140317" id="event_140317">
+                            <area shape="rect" coords="98,285,257,323" alt="자세히보기" href="https://event.gabia.com/d_event_140317">
+                        </map>
+					</li>
+					<li>
+                        <img src="https://event.gabia.com/asset/images/event/140210_domain/bnr_www.jpg" alt="2014년 새로운 도메인이 쏟아집니다.." usemap="#event_140210">
+                        <map name="event_140210" id="event_140120_b">
+                            <area shape="rect" coords="98,277,260,320" alt="자세히보기" href="https://domain.gabia.com/regist/regist_newgtld">
+                        </map>
+					</li>
+					<li>
+                        <img src="https://event.gabia.com/asset/images/event/140123_cloud/bnr_www.jpg" alt="대규모 이벤트, 게임서비스도 문제없는 고성능 g.클라우드 출시!" usemap="#event_140123">
+                        <map name="event_140123" id="event_140123">
+                            <area shape="rect" coords="99,280,257,319" alt="자세히보기" href="https://cloud.gabia.com/service">
+                        </map>
+					</li>
+				</ol>
+				
+				<div class="control_wrap">
+                    <div class="play_controll"><button type="button">재생&#38;멈춤</button></div>
+					<div class="roll_control">
+						<ol>
+<!--
+							<li><button type="button" title="1번째 배너">0</button></li>
+							<li><button type="button" title="2번째 배너">1</button></li>
+							<li><button type="button" title="3번째 배너">2</button></li>
+							<li><button type="button" title="4번째 배너">3</button></li>
+-->
+						</ol>
+					</div>
+				</div>
+				<!--//control_wrap-->
+		 	</div>
+			<!--//imgRoll-->
+	  	</div>
+		<!--//indexImg-->
+	</div>
+	<!--//visualBg01-->
+</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</body>
+</html>
